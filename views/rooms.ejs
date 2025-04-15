@@ -1,0 +1,22 @@
+<%- include('headfoot/header', { title: 'Room List' }) %>
+<h2>Available Rooms</h2>
+<ul>
+  <% rooms.forEach(room => { %>
+    <li>Room <%= room.number %> - <%= room.type %> - <%= room.isAvailable ? 'Available' : 'Booked' %></li>
+  <% }) %>
+</ul>
+
+<h3>Add Room</h3>
+<form action="/rooms/add" method="POST">
+  <input type="number" name="number" placeholder="Room Number" required>
+  <input type="text" name="type" placeholder="Type" required>
+  <label><input type="checkbox" name="isAvailable"> Available</label>
+  <button type="submit">Add Room</button>
+</form>
+
+<h3>Delete Room</h3>
+<form action="/rooms/delete" method="POST">
+  <input type="number" name="number" placeholder="Room Number to Delete" required>
+  <button type="submit">Delete</button>
+</form>
+<%- include('headfoot/footer') %>

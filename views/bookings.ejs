@@ -1,0 +1,27 @@
+<%- include('headfoot/header', { title: 'Booking List' }) %>
+
+<h2>Bookings</h2>
+<ul>
+  <% bookings.forEach(booking => { %>
+    <li>
+      <%= booking.customerName %> - Room <%= booking.roomNumber %> -
+      <%= booking.checkInDate.toDateString() %> to <%= booking.checkOutDate.toDateString() %>
+
+      <!-- Delete Button -->
+      <form action="/bookings/cancel/<%= booking._id %>" method="POST" style="display:inline;">
+        <button type="submit">Cancel</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
+
+<h3>Add Booking</h3>
+<form action="/bookings/add" method="POST">
+  <input type="text" name="customerName" placeholder="Customer Name" required>
+  <input type="number" name="roomNumber" placeholder="Room Number" required>
+  <input type="date" name="checkInDate" required>
+  <input type="date" name="checkOutDate" required>
+  <button type="submit">Add Booking</button>
+</form>
+
+<%- include('headfoot/footer') %>

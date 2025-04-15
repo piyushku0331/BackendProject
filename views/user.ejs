@@ -1,0 +1,30 @@
+<%- include('headfoot/header', { title: 'User List' }) %>
+
+<h2>User List</h2>
+<ul>
+  <% users.forEach(user => { %>
+    <li><%= user.name %> - <%= user.email %></li>
+
+    <!-- Delete Form for each user -->
+    <form action="/users/delete/<%= user.email %>" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+
+    <!-- Update Form for each user -->
+    <form action="/users/update/<%= user.email %>" method="POST">
+      <input type="text" name="newName" placeholder="New Name" required>
+      <input type="email" name="newEmail" placeholder="New Email" required>
+      <button type="submit">Update</button>
+    </form>
+
+  <% }) %>
+</ul>
+
+<h3>Add User</h3>
+<form action="/users/add" method="POST">
+  <input type="text" name="name" placeholder="Name" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <button type="submit">Add</button>
+</form>
+
+<%- include('headfoot/footer') %>
