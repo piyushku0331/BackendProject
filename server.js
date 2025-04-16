@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const connectDB = require('./mainDB/mongoose');
 
-const userRoutes = require('./routes/userRoutes'); // Make sure the path is correct
+const userRoutes = require('./routes/userRoutes'); 
 const roomRoutes = require('./routes/roomRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 
 const app = express();
 const PORT = 3000;
 
-connectDB();  // Ensure DB connection is established
+connectDB();  
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,11 +22,10 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Home' });
 });
 
-// Use the correct route here
-app.use('/users', userRoutes);  // This will route '/user' to userRoutes
-app.use('/rooms', roomRoutes);
+
+app.use('/users', userRoutes);  
 app.use('/bookings', bookingRoutes);
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
